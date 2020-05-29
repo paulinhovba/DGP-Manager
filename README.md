@@ -1,14 +1,10 @@
-  ![image](https://user-images.githubusercontent.com/52004768/83304437-3f47d680-a1d5-11ea-9060-7e1608396540.png)
-  
 <h1 align="center">
-<br>
-<br>
-<br>
 DGP Manager System - Sistema para gestão de empresa urbanizadora
 </h1>
 
-<p align="center">Este sistema consiste em um mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS.</p>
+![image](https://user-images.githubusercontent.com/52004768/83304437-3f47d680-a1d5-11ea-9060-7e1608396540.png)  
 
+<p align="center">Este sistema consiste em um mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS.</p>
 
 ![image](https://user-images.githubusercontent.com/52004768/83306204-85526980-a1d8-11ea-83c1-afc33c1a4ce9.png)
 
@@ -54,4 +50,4 @@ Projeto em desenvolvimento, utilizando as seguintes tecnologias:
 - ✔️ JQuery
 
 
-Made with ♥ by Paulinho Monteiro :wave: [Get in touch!](http://www.paulinhomonteiro.com)
+Made with ♥ by Paulinho Monteiro :wave: [Acesse:](http://www.paulinhomonteiro.com)
