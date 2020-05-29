@@ -21,9 +21,7 @@
 <hr />
 
 
-## Tecnologias
-
-Projeto em desenvolvimento, utilizando as seguintes tecnologias:
+## Projeto em desenvolvimento, utilizando as seguintes tecnologias:
 
 ✔️ NodeJS
 
