@@ -4,15 +4,24 @@
 <br>
 <br>
 <br>
-Gobarber
+DGP Manager System - Sistema para gestão de empresa urbanizadora
 </h1>
 
-<p align="center">The monorepo of a application that allows users to schedule an appointment with their favorite barber and show the barber their schedule for the day.</p>
+<p align="center">Este sistema consiste em um mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS.</p>
 
-<div align="center" >
-  <img src="./github/NewGoBarber.gif" alt="demo-web" height="425">
-  <img src="./github/AppGobarber.gif" alt="demo-mobile" height="425">
-</div>
+
+![image](https://user-images.githubusercontent.com/52004768/83306204-85526980-a1d8-11ea-83c1-afc33c1a4ce9.png)
+
+![image](https://user-images.githubusercontent.com/52004768/83306245-9a2efd00-a1d8-11ea-8581-fa191e7995ec.png)
+
+![image](https://user-images.githubusercontent.com/52004768/83306287-ad41cd00-a1d8-11ea-80d0-b12181acb1e4.png)
+
+![image](https://user-images.githubusercontent.com/52004768/83306336-c0549d00-a1d8-11ea-9a64-0b7fad76bc56.png)
+
+![image](https://user-images.githubusercontent.com/52004768/83306355-cba7c880-a1d8-11ea-876b-2b18f1c95698.png)
+
+![image](https://user-images.githubusercontent.com/52004768/83306402-dcf0d500-a1d8-11ea-8aff-4b9e7e26738f.png)
+
 
 <hr />
 
