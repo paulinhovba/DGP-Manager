@@ -20,39 +20,38 @@ DGP Manager System - Sistema para gestão de empresa urbanizadora
 
 ![image](https://user-images.githubusercontent.com/52004768/83306355-cba7c880-a1d8-11ea-876b-2b18f1c95698.png)
 
-![image](https://user-images.githubusercontent.com/52004768/83306402-dcf0d500-a1d8-11ea-8aff-4b9e7e26738f.png)
-
-
 <hr />
 
 
 ## 🚀 Technologies
 
-This project was developed with the following technologies:
-
-- ✔️ Typescript
-
-- ✔️ ReactJS
-
-- ✔️ React Native
+Projeto em desenvolvimento, utilizando as seguintes tecnologias:
 
 - ✔️ NodeJS
 
-- ✔️ React Hooks
+- ✔️ Express
 
-- ✔️ Context API
+- ✔️ CORS
 
-- ✔️ Styled-components
+- ✔️ EJS
 
-- ✔️ React Spring
+- ✔️ dotenv-safe
 
-- ✔️ Polished
+- ✔️ JSON Web Token (JWT)
 
-- ✔️ Docker
+- ✔️ Tailwind CSS
 
-- ✔️ PostgreSQL
+- ✔️ Datatables.JS
 
-- ✔️ Axios
+- ✔️ Alpine JS
+
+- ✔️ Window.localStorage
+
+- ✔️ Express Static Path (Servindo arquivos estáticos pela API)
+
+- ✔️ MySQL Database
+
+- ✔️ JQuery
 
 
-Made with ♥ by ARTHUR PC :wave: [Get in touch!](https://www.linkedin.com/in/arthurpc03/)
+Made with ♥ by Paulinho Monteiro :wave: [Get in touch!](http://www.paulinhomonteiro.com)
