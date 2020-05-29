@@ -1,5 +1,5 @@
 <h1 align="center">
-DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS)
+## DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS)
 </h1>
 
 ![image](https://user-images.githubusercontent.com/52004768/83304437-3f47d680-a1d5-11ea-9060-7e1608396540.png)  
@@ -21,7 +21,7 @@ DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS)
 <hr />
 
 
-## 🚀 Technologies
+## Tecnologias
 
 Projeto em desenvolvimento, utilizando as seguintes tecnologias:
 
