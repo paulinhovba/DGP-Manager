@@ -26,8 +26,7 @@ O modelo lógico já provê a API com endpoints para integrações REST.
 # Screenshots
 <hr />
 
-![Screenshot](telagrande.gif)![Screenshot](telapequena.gif)
-
+![Screenshot](telagrande.gif)
 
 # Recursos e Tecnologias utilizadas
 <hr />
