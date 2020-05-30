@@ -6,7 +6,7 @@ Mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS
 
 > Status do Projeto: Em desenvolvimento :warning:
 
-# Recursos para utilização
+# Recursos
 
 Hospedagem NODEJS ou mesmo em LOCALHOST, através do comando: NODE APP. Base de dados MySQL. O Script para criação da base está disponível no projeto.
 
@@ -20,7 +20,7 @@ O modelo lógico já provê a API com endpoints para integrações REST.
 
 ![Screenshot](telagrande.gif)
 
-# Recursos e tecnologias utilizadas
+# Tecnologias
 
 - [x] NodeJS
 
