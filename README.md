@@ -11,7 +11,7 @@ Hospedagem NODEJS ou mesmo em LOCALHOST, através do comando: NODE APP. Base de 
 
 Backend desenvolvido em NodeJS, renderizando templates EJS, com CSS Tailwind (https://tailwindcss.com/) e framework Javascript AlpineJS (https://github.com/alpinejs/alpine).
 
-Tailwind e AlpineJS são  referenciados no HTML, através da tag <link> e <script> e já estão configuradas nos templates EJS.
+Tailwind e AlpineJS são  referenciados no HTML, através da tag ```<link>``` e ```<script>``` e já estão configuradas nos templates EJS.
   
 O modelo lógico já provê a API com endpoints para integrações REST.
   
