@@ -18,7 +18,9 @@ O modelo lógico já provê a API com endpoints para integrações REST.
 # Deploy da Aplicação na Umbler
 
 [DGP Gestão] http://api-paulinhomonteiro-com.umbler.net/
+
 user: monteiro@gmail.com
+
 pass: 12345
 
 # Screenshots
