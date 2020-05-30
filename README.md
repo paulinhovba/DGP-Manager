@@ -27,7 +27,7 @@ pass: 12345
 
 ![Screenshot](telagrande.gif)
 
-# Recursos e Tecnologias utilizadas
+# Recursos e tecnologias utilizadas
 
 - [x] NodeJS
 
@@ -59,4 +59,4 @@ pass: 12345
 
 <hr />
 
-Made with too much ♥ by [Paulinho Monteiro] (http://www.paulinhomonteiro.com)
+Made with too much ♥, by [Paulinho Monteiro] (http://www.paulinhomonteiro.com) - 2020.
