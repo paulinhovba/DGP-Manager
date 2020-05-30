@@ -8,7 +8,7 @@
 
 <p align="center">Backend desenvolvido em NodeJS, renderizando templates EJS, com CSS Tailwind (https://tailwindcss.com/) e framework Javascript AlpineJS (https://github.com/alpinejs/alpine).</p>
 
-![Alt Text](https://github.com/paulinhovba/DGP-Manager/telagrande.gif)
+![Alt text](https://raw.githubusercontent.com/paulinhovba/DGP-Manager/Master/telagrande.gif)
 
 ![telapequena](https://user-images.githubusercontent.com/52004768/83314606-9e1b4900-a1f1-11ea-9223-b5cf98d33f66.gif)
 
