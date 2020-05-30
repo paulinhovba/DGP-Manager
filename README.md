@@ -8,15 +8,7 @@
 
 <p align="center">Backend desenvolvido em NodeJS, renderizando templates EJS, com CSS Tailwind (https://tailwindcss.com/) e framework Javascript AlpineJS (https://github.com/alpinejs/alpine).</p>
 
-![image](https://user-images.githubusercontent.com/52004768/83306204-85526980-a1d8-11ea-83c1-afc33c1a4ce9.png)
-
-![image](https://user-images.githubusercontent.com/52004768/83306245-9a2efd00-a1d8-11ea-8581-fa191e7995ec.png)
-
-![image](https://user-images.githubusercontent.com/52004768/83306287-ad41cd00-a1d8-11ea-80d0-b12181acb1e4.png)
-
-![image](https://user-images.githubusercontent.com/52004768/83306336-c0549d00-a1d8-11ea-9a64-0b7fad76bc56.png)
-
-![image](https://user-images.githubusercontent.com/52004768/83306355-cba7c880-a1d8-11ea-876b-2b18f1c95698.png)
+![telapequena](https://user-images.githubusercontent.com/52004768/83314606-9e1b4900-a1f1-11ea-9223-b5cf98d33f66.gif)
 
 <hr />
 
