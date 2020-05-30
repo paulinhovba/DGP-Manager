@@ -1,6 +1,5 @@
 
-# DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS)
-> Status do Projeto: Em desenvolvimento :warning:
+# DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS) > Status do Projeto: Em desenvolvimento :warning:
 
 <p align="center">Mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS. Versão atual contempla o módulo de CLIENTES totalmente funcional.</p>
 
