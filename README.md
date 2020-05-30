@@ -6,7 +6,10 @@
 
 <p align="center">Backend desenvolvido em NodeJS, renderizando templates EJS, com CSS Tailwind (https://tailwindcss.com/) e framework Javascript AlpineJS (https://github.com/alpinejs/alpine).</p>
 
-![Screenshot](telagrande.gif)![Screenshot](telapequena.gif)
+<h3 align="center">
+![Screenshot](telagrande.gif)
+![Screenshot](telapequena.gif)
+</h3>
 
 <hr />
 
