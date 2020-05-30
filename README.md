@@ -1,6 +1,7 @@
-<h1 align="center">
-## DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS)
-</h1>
+
+# DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS)
+
+<hr />
 
 <p align="center">Este sistema consiste em um mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS.</p>
 
@@ -11,34 +12,34 @@
 
 <hr />
 
-
 ## Projeto em desenvolvimento, utilizando as seguintes tecnologias:
 
-✔️ NodeJS
+- [x] NodeJS
 
-✔️ Express
+- [x] Express
 
-✔️ CORS
+- [x] CORS
 
-✔️ EJS
+- [x] EJS
 
-✔️ dotenv-safe
+- [x] dotenv-safe
 
-✔️ JSON Web Token (JWT)
+- [x] JSON Web Token (JWT)
 
-✔️ Tailwind CSS
+- [x] Tailwind CSS
 
-✔️ Datatables.JS
+- [x] Datatables.JS
 
-✔️ Alpine JS
+- [x] Alpine JS
 
-✔️ Window.localStorage
+- [x] Window.localStorage
 
-✔️ Express Static Path (Servindo arquivos estáticos pela API)
+- [x] Express Static Path (Servindo arquivos estáticos pela API)
 
-✔️ MySQL Database
+- [x] MySQL Database
 
-✔️ JQuery
+- [x] JQuery
 
+<hr />
 
-Made with too much ♥ by Paulinho Monteiro (http://www.paulinhomonteiro.com)
+Made with too much ♥ by [Paulinho Monteiro] (http://www.paulinhomonteiro.com)
