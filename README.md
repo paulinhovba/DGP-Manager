@@ -8,7 +8,7 @@ Mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS
 
 # Recursos
 
-Hospedagem NODEJS ou mesmo em LOCALHOST, através do comando: NODE APP. Base de dados MySQL. O Script para criação da base está disponível no projeto.
+Hospedagem NODEJS ou mesmo em LOCALHOST, através do comando: NODE APP. Base de dados MySQL. O Script para criação da base está disponível no projeto (nodejsbd.sql).
 
 Backend desenvolvido em NodeJS, renderizando templates EJS, com CSS Tailwind (https://tailwindcss.com/) e framework Javascript AlpineJS (https://github.com/alpinejs/alpine).
 
