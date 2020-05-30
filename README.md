@@ -1,7 +1,7 @@
 
 # DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS) 
 
-<p align="center">Mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS. Versão atual contempla o módulo de CLIENTES totalmente funcional.</p>
+Mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS. Versão atual contempla o módulo de CLIENTES totalmente funcional.
 
 > Status do Projeto: Em desenvolvimento :warning:
 
@@ -15,7 +15,7 @@ Tailwind e AlpineJS são  referenciados no HTML, através da tag <link> e <scrip
   
 O modelo lógico já provê a API com endpoints para integrações REST.
   
-# Deploy da Aplicação com Umbler: :dash:
+# Deploy da Aplicação na Umbler
 
 > http://api-paulinhomonteiro-com.umbler.net/
 > user: monteiro@gmail.com
