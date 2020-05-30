@@ -1,3 +1,4 @@
+![PaulinhoMonteiro](https://user-images.githubusercontent.com/52004768/83332307-cd24cf80-a270-11ea-8a5b-53ca0036b7d0.png)
 
 # DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS) 
 
