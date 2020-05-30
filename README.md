@@ -1,14 +1,15 @@
 
 # DGP Manager System - Sistema para Gestão de Urbanizadoras (SaaS)
-
 <hr />
 
 <p align="center">Este sistema consiste em um mini-ERP, abrangendo a gestão (CRUD) de CLIENTES, EMPREENDIMENTOS, LOTES, COTAS, CONTAS (MOVIMENTAÇÃO), FLUXO DE CAIXA E AGENDA DE COMPROMISSOS.</p>
 
 <p align="center">Backend desenvolvido em NodeJS, renderizando templates EJS, com CSS Tailwind (https://tailwindcss.com/) e framework Javascript AlpineJS (https://github.com/alpinejs/alpine).</p>
 
+<p align="center">  
 ![Screenshot](telagrande.gif)
 ![Screenshot](telapequena.gif)
+</p>
 
 <hr />
 
