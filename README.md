@@ -15,7 +15,15 @@ Backend desenvolvido em NodeJS, renderizando templates EJS, com CSS Tailwind (ht
 Tailwind e AlpineJS são  referenciados no HTML, através da tag ```<link>``` e ```<script>``` e já estão configuradas nos templates EJS.
   
 O modelo lógico já provê a API com endpoints para integrações REST.
-  
+
+# Utilização
+
+Baixe o repositório exatamente como está. O arquivo index.html é a página que o usuário acessa para login e é servida pela API utilizando o método STATIC do express router.
+
+As imagens .gif do diretório principal podem ser excluídas. São utilizadas aqui somente para compor o READ.me
+
+As informações sensíveis (secret, user, pass, db_host, db_name, db_port, db_user, db_pass) devem ser informadas no arquivo .env
+
 # Screenshots
 
 ![Screenshot](telagrande.gif)
