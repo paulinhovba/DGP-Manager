@@ -3,4 +3,5 @@
 /bower_components/
 .DS_Store
 .vscode
+.gitignore
 README.md

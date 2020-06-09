@@ -22,10 +22,6 @@ app.use((req, res, next) => {
 });
 
 
-//inicia o servidor
-app.listen(port);
-console.log('API inicializada corretamente!');
-
 
 //configurando o BODYPARSER, ROUTER, EJS e STATIC ROUTE.
 app.use(bodyParser.json());
@@ -46,3 +42,7 @@ router.post('/cliente/delete/:token/:id', Cliente.PostDeletaCliente)
 router.get('/cliente/update/:token/:id', Cliente.GetAtualizaCliente)
 router.post('/cliente/update/:token/:id', Cliente.PostAtualizaCliente)
 router.get('/logout', Access.PostUserLogout)
+
+
+//inicia o servidor
+app.listen(port, ()=> {console.log(`API rodando na porta ${port}`)})

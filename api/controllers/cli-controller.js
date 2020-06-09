@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const mysql = require('mysql');
 var dataset = undefined
 
-require("dotenv-safe").config();
+require("dotenv-safe").config();;
 
 class CliController {  
    
