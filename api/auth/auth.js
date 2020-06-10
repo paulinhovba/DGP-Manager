@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken'); 
 
- async function Auth(req, res) {
+ async function Auth(req, res, next) {
   const { token } = req.params;
 
   await jwt.verify(token, process.env.SECRET, (err) => {
@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
       res.redirect('/')
     }else{    
       console.log('Passou no auth!')    
-      return;
+      return next();
     }
   });  
 }
