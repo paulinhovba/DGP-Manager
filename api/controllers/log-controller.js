@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken'); 
 require("dotenv-safe").config();
 
-class GenController {
+class LogController {
 
   PostUserToken(req, res){
     if(req.body.user === process.env.USER && req.body.pwd === process.env.PASS){
@@ -23,4 +23,4 @@ PostUserLogout(req, res){
 
 }
 
-module.exports = GenController;
+module.exports = LogController;

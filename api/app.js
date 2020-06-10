@@ -9,8 +9,8 @@ const router = express.Router();
 // Importação do controller (clientes)
 const CliController = require("./controllers/cli-controller");
 const Cliente = new CliController();
-const GenController = require("./controllers/gen-controller");
-const Access = new GenController();
+const LogController = require("./controllers/log-controller");
+const Access = new LogController();
 
 
 // Libera acesso CORS para qualquer domínio. Substituir * pelo domínio desejado.
@@ -22,7 +22,6 @@ app.use((req, res, next) => {
 });
 
 
-
 //configurando o BODYPARSER, ROUTER, EJS e STATIC ROUTE.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //para usar quando vem de um FORM
@@ -31,7 +30,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 //app.use(verifyJWT);
 
-// Controle de Rotas 
+
+// Controle de Rotas (CLIENTES)
 router.post('/login', Access.PostUserToken)
 router.get('/admin/:token', Cliente.GetListaAdmin)
 router.get('/clientes/:token/:id?', Cliente.GetListaClientes)

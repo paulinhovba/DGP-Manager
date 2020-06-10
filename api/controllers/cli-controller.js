@@ -30,14 +30,17 @@ class CliController {
     const cus_nome = req.body.cus_nome.substring(0,50);
     const cus_end = req.body.cus_end.substring(0,100);
     const cus_email = req.body.cus_email.substring(0,50);
+    const cus_tipo = req.body.cus_tipo;
     const cus_tel1 = req.body.cus_tel1.substring(0,11);
     const cus_tel2 = req.body.cus_tel2.substring(0,11);
+
+    console.log(cus_tipo);
 
     jwt.verify(token, process.env.SECRET, (err) => {
       if(err){        
         res.redirect('/')
       }else{        
-        execSQLQuery(`INSERT INTO clientes(nome, endereco, email, celular, telefone, flagstatus) VALUES('${cus_nome}','${cus_end}','${cus_email}','${cus_tel1}','${cus_tel2}', 1)`, (dataset) => {
+        execSQLQuery(`INSERT INTO clientes(nome, endereco, email, tipo, celular, telefone, flagstatus) VALUES('${cus_nome}','${cus_end}','${cus_email}','${cus_tipo}','${cus_tel1}','${cus_tel2}', 1)`, (dataset) => {
           dataset = '';
           execSQLQuery('SELECT * FROM clientes WHERE FlagStatus=1', (dataset) => {
             let nreg = parseInt(dataset.length);
@@ -60,6 +63,7 @@ class CliController {
     let cliente = '';
     let end = '';
     let email ='';
+    let tipo = '';
     let tel1 = '';
     let tel2 = '';
 
@@ -69,13 +73,14 @@ class CliController {
           res.redirect('/')
       }else{    
         dataset = '';
-        execSQLQuery(`SELECT nome, endereco, email, celular, telefone FROM clientes WHERE id=${id}` , (dataset) => {      
+        execSQLQuery(`SELECT nome, endereco, email, tipo , celular, telefone FROM clientes WHERE id=${id}` , (dataset) => {      
 
           dataset.forEach(function(el, i){
           if(el.Id = id) {
             cliente = el.nome;
             end = el.endereco;
             email = el.email;
+            tipo = el.tipo;
             tel1 = el.celular;
             tel2 = el.telefone
           }        
@@ -86,6 +91,7 @@ class CliController {
             cliente:cliente,
             endereco:end,
             email:email,
+            tipo:tipo,
             celular:tel1,
             telefone:tel2
           }); 
@@ -139,6 +145,7 @@ class CliController {
     let cliente = '';
     let end = '';
     let email ='';
+    let tipo = '';
     let tel1 = '';
     let tel2 = '';
 
@@ -147,7 +154,7 @@ class CliController {
           res.redirect('/')
       }else{
         dataset = '';
-        execSQLQuery(`SELECT nome, endereco, email, celular, telefone FROM clientes WHERE id=${id}` , (dataset) => {      
+        execSQLQuery(`SELECT nome, endereco, email, tipo, celular, telefone FROM clientes WHERE id=${id}` , (dataset) => {      
         let nome = JSON.stringify(dataset);
         console.log('O nome é: ' + nome);
         dataset.forEach(function(el, i){
@@ -155,6 +162,7 @@ class CliController {
             cliente = el.nome;
             end = el.endereco;
             email = el.email;
+            tipo = el.tipo;
             tel1 = el.celular;
             tel2 = el.telefone
           }        
@@ -165,6 +173,7 @@ class CliController {
             cliente:cliente,
             endereco:end,
             email:email,
+            tipo:tipo,
             celular:tel1,
             telefone:tel2
           }); 
@@ -180,6 +189,7 @@ class CliController {
     const cus_nome = req.body.cus_nome.substring(0,50);
     const cus_end = req.body.cus_end.substring(0,100);
     const cus_email = req.body.cus_email.substring(0,50);
+    const cus_tipo = req.body.cus_tipo.substring(0,20);
     const cus_tel1 = req.body.cus_tel1.substring(0,11);
     const cus_tel2 = req.body.cus_tel2.substring(0,11);
     
@@ -189,7 +199,7 @@ class CliController {
           res.redirect('/')
       }else{ 
           dataset = '';
-          execSQLQuery(`UPDATE clientes SET nome='${cus_nome}', endereco='${cus_end}', email='${cus_email}', celular='${cus_tel1}', telefone='${cus_tel2}' WHERE ID=${id}`, (dataset) => {
+          execSQLQuery(`UPDATE clientes SET nome='${cus_nome}', endereco='${cus_end}', email='${cus_email}', tipo='${cus_tipo}', celular='${cus_tel1}', telefone='${cus_tel2}' WHERE ID=${id}`, (dataset) => {
            console.log(dataset);
            dataset = '';
           execSQLQuery('SELECT * FROM clientes WHERE FlagStatus=1', (dataset) => {

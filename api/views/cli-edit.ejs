@@ -325,10 +325,19 @@
                 <label class="block text-md text-gray-600" for="cus_end">Endereço</label>
                 <input class="w-full px-2  py-2 text-gray-700 bg-gray-200 rounded" id="cus_end" name="cus_end" type="text" required="" placeholder="Endereço" aria-label="Endereço" value ="<%=endereco%>">
               </div>
-              <div class="mt-2">
-                <label class=" block text-md text-gray-600" for="cus_email">Email</label>
-                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Email" aria-label="Email" value ="<%=email%>">
-              </div>
+              <div class="inline-block mt-2 w-1/2 pr-1">
+               <label class=" block text-md text-gray-600" for="cus_email">Email</label>
+               <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" type="text" required="" placeholder="Email" aria-label="Email" value ="<%=email%>">
+               </div>
+               <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                  <label class=" block text-md text-gray-600" for="cus_tipo">Tipo</label>
+                  <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_tipo" name="cus_tipo" type="select" required="" placeholder="Tipo" aria-label="Tipo" value ="<%=tipo%>">
+                     <option>Contato</option>
+                     <option>Cliente</option>
+                     <option>Corretor</option>
+                     <option>Imobiliária</option>
+                  </select>
+               </div>
               <div class="inline-block mt-2 w-1/2 pr-1">
                 <label class="block text-md text-gray-600" for="cus_tel1">Telefone</label>
                 <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_tel1" name="cus_tel1" type="text" required="" placeholder="Telefone" aria-label="Telefone" value ="<%=celular%>">

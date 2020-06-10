@@ -4,8 +4,8 @@ const router = express.Router();
 // Importação do controller (clientes)
 const CliController = require("../controllers/cli-controller");
 const Cliente = new CliController();
-const GenController = require("../controllers/gen-controller");
-const Access = new GenController();
+const LogController = require("../controllers/log-controller");
+const Access = new LogController();
 
 class Routes {
     Routes(req, res){
