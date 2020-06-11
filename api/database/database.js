@@ -1,14 +1,14 @@
 const mysql = require('mysql');
 
-class GenModels {
+class ConnectDB {
 
-  execSQLQuery(sqlQry, callback){
+  Query(sqlQry, callback){
     const connection = mysql.createConnection({
-      host: 'mysql942.umbler.com',
-      port: '41890',
-      user: 'prmpoker',
-      password: 'stuunga1980',
-      database: 'nodejsbd'
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS    
     });
   
     connection.query(sqlQry, function(error, results, fields){
@@ -24,7 +24,7 @@ class GenModels {
         return callback(dataset);
     });
   }
-
+  
 }
 
-module.exports = GenModels;
+module.exports = ConnectDB;
