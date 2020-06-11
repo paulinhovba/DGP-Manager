@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-var dataset = undefined
 
 require("dotenv-safe").config();
 

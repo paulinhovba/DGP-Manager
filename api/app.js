@@ -1,6 +1,6 @@
-const express = require('express');       
+const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();  
+const app = express();
 const port = 3000; //porta padrão
 const cors = require('cors');
 const router = express.Router();
@@ -15,16 +15,18 @@ const Access = new LogController();
 
 // Libera acesso CORS para qualquer domínio. Substituir * pelo domínio desejado.
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
-  app.use(cors());
-  next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    app.use(cors());
+    next();
 });
 
 
 //configurando o BODYPARSER, ROUTER, EJS e STATIC ROUTE.
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); //para usar quando vem de um FORM
+app.use(bodyParser.urlencoded({
+    extended: true
+})); //para usar quando vem de um FORM
 app.use('/', router);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -45,4 +47,6 @@ router.get('/logout', Access.PostUserLogout)
 
 
 //inicia o servidor
-app.listen(port, ()=> {console.log(`API rodando na porta ${port}`)})
+app.listen(port, () => {
+    console.log(`API rodando na porta ${port}`)
+})
