@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>DGP Empreendimentos</title>
+      <meta name="author" content="Paulinho Monteiro">
+      <meta name="description" content="">
+      <!-- Tailwind -->
+      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+      <link href="../../../css/style.css" rel="stylesheet">
+   </head>
+   <body onload="getRes()" class="bg-gray-100 flex">
+      
+      <!-- Inclusão de template EJS - Menu -->
+      <%- include('menu.ejs') %>
+      
+      <!-- @end Menu Above Medium Screen -->
+      <div class="flex-1 flex-col relative z-0 overflow-y-auto">  
+
+        <div class="md:max-w-6xl md:mx-auto px-4 py-0">
+          <div class="container mx-auto py-2 px-2">
+          </div>            
+        </div> 
+        
+        <div class="md:max-w-6xl md:mx-auto px-4 py-0">
+          <form action="<%=host%>/lote/reserva/<%=token%>/<%=id%>" method="post" class="p-10 bg-white rounded shadow-xl">
+            <p class="text-lg text-yellow-800 font-medium pb-4">Reserva de Lote</p>
+            <div class="inline-block mt-2 pr-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_des">Descrição</label>
+               <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_des" name="lot_des" type="text" required="" placeholder="Descricao" aria-label="Descricao" value ="<%=descricao%>" disabled>
+               <span id="lote" style="display: none;"><%=idlote%></span>
+            </div> 
+            <div class="inline-block mt-2 pr-1 w-1/2" style="display: none;">
+              <label class="block text-md text-gray-600" for="lot_dsc">Descrição</label>
+              <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_dsc" name="lot_dsc" type="text" required="" placeholder="Descricao" aria-label="Descricao" value ="<%=descricao%>">
+           </div>
+            <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_emp">Empreendimento</label>
+               <input class="empr w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_emp" name="lot_emp" type="text" required="" placeholder="Empreendimento" aria-label="Empreendimento" value ="<%=empreendimento%>" disabled>
+               <span id="idemp" style="display: none;"><%=idempreendimento%></span>
+            </div> 
+            <div class="inline-block mt-2 pr-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_qdr">Quadra</label>
+               <input class="empr w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_qdr" name="lot_qdr" type="text" required="" placeholder="Quadra" aria-label="Quadra" value ="<%=quadra%>" disabled>
+            </div> 
+            <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_num">Número</label>
+               <input class="w-full px-2  py-2 text-gray-700 bg-gray-200 rounded" id="lot_num" name="lot_num" type="text" required="" placeholder="Número" aria-label="Numero" value ="<%=numero%>" disabled>
+            </div>  
+            <div class="inline-block mt-2 pr-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_mtr">Metragem</label>
+               <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_mtr" name="lot_mtr" type="text" required="" placeholder="Metragem" aria-label="Metragem" value ="<%=metragem%>">
+            </div>
+            <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_mat">Matrícula</label>
+               <input class="w-full px-2  py-2 text-gray-700 bg-gray-200 rounded" id="lot_mat" name="lot_mat" type="text" required="" placeholder="Matrícula" aria-label="Matricula" value ="<%=matricula%>" disabled>
+            </div>  
+            <div class="inline-block mt-2 pr-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_vlm2">ValorM2</label>
+               <input class="w-full px-2  py-2 text-gray-700 bg-gray-200 rounded" id="lot_vlm2" name="lot_vlm2" type="text" required="" placeholder="Valor M2" aria-label="ValorM2" value ="<%=valorM2%>">
+            </div> 
+            <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_vltot">Valor Total</label>
+               <input class="w-full px-2  py-2 text-gray-700 bg-gray-200 rounded" id="lot_vltot" name="lot_vltot" type="text" required="" placeholder="Valor Total" aria-label="ValorTotal" value ="<%=valorTotal%>">
+            </div>          
+             
+            <div class="inline-block mt-2 pr-1 w-1/2">
+               <label class=" block text-md text-gray-600" for="lot_cli">Cliente</label>
+               <select class=" cliente w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_cli" name="lot_cli" type="select" required="" placeholder="Cliente" aria-label="Cliente">
+                  <option></option>
+                  <%
+                     var options = clientes;                 
+                     for (var i = 0; i < options.length; i++)
+                     {
+                     %>
+                     <option value="<%=options[i].id %>">
+                        <%=options[ i ].nome %>
+                     </option>
+                     <%
+                     }                
+                  %>
+                 </select>
+            </div> 
+
+            <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+            <label class="block text-md text-gray-600" for="lot_obs">Observações</label>
+               <input class="w-full px-2  py-2 text-gray-700 bg-gray-200 rounded" id="lot_obs" name="lot_obs" type="text" placeholder="Observações" aria-label="Observacoes">
+            </div>
+
+
+   <!-- modal div -->
+    <div class="mt-2" x-data="{ open: false }">
+
+      <div class="inline-block mt-2 w-full mensagem" style="visibility:hidden">
+               <span class="texto text-lg text-green-800 font-medium pb-4">                  
+               </span>
+            </div>
+
+      <!-- Button (blue), duh! -->
+      <div class="mt-2 reserva">
+               <input id="check" class="check mr-2" type="checkbox" x-on:click="open=true"></input>
+               <span class="fluxo text-lg text-green-800 font-medium pb-4">  
+                  Cancelar Reserva?              
+               </span> 
+            </div>
+            
+            <!-- Dialog (full screen) -->
+      <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full" style="background-color: rgba(0,0,0,.5);" x-show="open">
+
+        <!-- A basic modal dialog with title, body and one button to close -->
+        <div class="h-auto p-4 mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0">
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">
+              Confirmação!
+            </h3>
+
+            <div class="mt-2">
+              <p class="text-sm leading-5 text-gray-500">
+                Deseja confirmar o cancelamento de reserva deste lote?
+              </p>
+          </div>
+        </div>
+
+          <!-- One big close button.  --->
+          <form action="<%=host%>/lote/reserva/<%=token%>/<%=id%>" method="post" class="p-10 bg-white rounded shadow-xl">
+          
+          <div class="mt-4 flex justify-between">
+               <div class="cancela px-4 bg-red-400 p-3 rounded-lg text-white hover:bg-red-600"@click="open=false">Cancelar</div>
+               <a href="<%=host%>/cancela/<%=token%>/<%=id%>">
+               <div class="ok px-4 bg-green-400 p-3 rounded-lg text-white hover:bg-green-600"@click="open=false">Confirmar</div>
+               </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- fim modal div -->
+
+            <div class="mt-4 flex justify-between">
+              <a href="<%=host%>/lotes/<%= token %>"> 
+                <div class="px-4 bg-yellow-400 p-3 rounded-lg text-white hover:bg-yellow-600">Cancelar</div>
+              </a>
+              <input type="submit" value="Reservar" class="px-4 bg-yellow-400 p-3 rounded-lg text-white hover:bg-yellow-600">
+            </div>
+         </form>
+        </div>
+      </div>
+      
+      <!-- AlpineJS -->
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+      <!-- Font Awesome -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+      <!-- Axios -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+      <!-- JQuery -->
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <!-- Local -->
+      <script src="../../../js/functions.js"></script>
+
+      <script> 
+
+      $('#lot_vlm2').keyup(function(){   
+         var v = $(this).val();
+         v=v.replace(/\D/g,'');
+         v=v.replace(/(\d{1,2})$/, ',$1');  
+         v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+         v = v != ''?'R$ '+v:'';
+         $(this).val(v);
+
+         var vm2 = $(this).val().replace("R$","").split('.').join('').replace(',','.');
+         var mt2 = $("#lot_mtr").val();  
+         var vtt = ((vm2 * mt2));  
+         $("#lot_vltot").val(vtt*100);
+
+         var x = $("#lot_vltot").val();
+         x=x.replace(/\D/g,'');
+         x=x.replace(/(\d{1,2})$/, ',$1');  
+         x=x.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+         x = x != ''?'R$ '+x:'';
+         $("#lot_vltot").val(x);
+      });
+
+      $('#lot_vlm2').focus(function(){
+         var v = $(this).val();
+         v=v.replace(/\D/g,'');
+         v=v.replace(/(\d{1,2})$/, ',$1');  
+         v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+         v = v != ''?'R$ '+v:'';
+         $(this).val(v);
+      });
+
+      $('#lot_vltot').keyup(function(){
+         var v = $(this).val();
+         v=v.replace(/\D/g,'');
+         v=v.replace(/(\d{1,2})$/, ',$1');  
+         v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+         v = v != ''?'R$ '+v:'';
+         $(this).val(v);
+      });
+
+      $('#lot_vltot').focus(function(){
+         var v = $(this).val();
+         v=v.replace(/\D/g,'');
+         v=v.replace(/(\d{1,2})$/, ',$1');  
+         v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+         v = v != ''?'R$ '+v:'';
+         $(this).val(v);
+      });         
+
+   </script>  
+
+   </body>
+</html>

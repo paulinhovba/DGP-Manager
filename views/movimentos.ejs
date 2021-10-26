@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>DGP Empreendimentos</title>
+      <meta name="author" content="Paulinho Monteiro">
+      <meta name="description" content="">
+      <!-- Tailwind -->
+      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+         @import url('https://fonts.googleapis.com/css?family=Dosis:400,700&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+         
+         body { font-family: dosis; }  
+         table { 
+           font-family: 'Ubuntu Mono', monospace;
+           font-size: 14px;         
+          }
+
+         .bg-sidebar { background: #3d68ff; }
+         .cta-btn { color: #3d68ff; }
+         .upgrade-btn { background: #1947ee; }
+         .upgrade-btn:hover { background: #0038fd; }
+         .active-nav-link { background: #1947ee; }
+         .nav-item:hover { background: #1947ee; }
+         .account-link:hover { background: #3d68ff; }
+         /*Overrides for Tailwind CSS */
+         /*Form fields*/
+         .dataTables_wrapper select,
+         .dataTables_wrapper .dataTables_filter input {
+         
+         color: #4a5568; 			/*text-gray-700*/
+         padding-left: 1rem; 		/*pl-4*/
+         padding-right: 1rem; 		/*pl-4*/
+         padding-top: .5rem; 		/*pl-2*/
+         padding-bottom: .5rem; 		/*pl-2*/
+         line-height: 1.25; 			/*leading-tight*/
+         border-width: 2px; 			/*border-2*/
+         border-radius: .25rem; 		
+         border-color: #edf2f7; 		/*border-gray-200*/
+         background-color: #edf2f7; 	/*bg-gray-200*/
+         }
+
+         /*Row Hover*/
+         table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+         background-color: #ebf4ff;	/*bg-indigo-100*/
+         }
+
+         /*Pagination Buttons*/
+         .dataTables_wrapper .dataTables_paginate .paginate_button		{
+         font-weight: 700;				/*font-bold*/
+         border-radius: .25rem;			/*rounded*/
+         border: 1px solid transparent;	/*border border-transparent*/
+         margin: 5px 5px 5px 0px;
+         }
+
+         /*Pagination Buttons - Current selected */
+         .dataTables_wrapper .dataTables_paginate .paginate_button.current	{
+         color: #fff !important;				/*text-white*/
+         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
+         font-weight: 700;					/*font-bold*/
+         border-radius: .25rem;				/*rounded*/
+         background: #87CEEB !important;		/*bg-indigo-100*/
+         border: 1px solid transparent;		/*border border-transparent*/
+         padding: 5px 5px 5px 5px;
+         margin: 5px 5px 5px 0px;
+         }
+
+         /*Pagination Buttons - Hover */
+         .dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
+         color: #fff !important;				/*text-white*/
+         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
+         font-weight: 700;					/*font-bold*/
+         border-radius: .25rem;				/*rounded*/
+         background: #87CEEB !important;		/*bg-indigo-100*/
+         border: 1px solid transparent;		/*border border-transparent*/
+         margin: 5px 5px 5px 0px;
+         }
+
+         /*Add padding to bottom border */
+         table.dataTable.no-footer {
+         border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+         margin-top: 0.75em;
+         margin-bottom: 0.75em;
+         }
+
+         /*Change colour of responsive icon*/
+         table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+         background-color: #87CEEB !important; /*bg-indigo-100*/
+         }
+
+      </style>
+   </head>
+   <body class="bg-gray-100 flex">
+
+      <!-- Inclusão de template EJS - Menu -->
+      <%- include('menu.ejs') %>
+
+      <!-- @end Menu Above Medium Screen -->
+      <div class="flex-1 flex-col relative z-0 overflow-y-auto">        
+
+         <div class="md:max-w-6xl md:mx-auto px-4 py-0">
+            <div class="container mx-auto py-6 px-2" x-data="datatables()" x-cloak>
+               <div class="mb-4 flex justify-between items-center">
+                  <div class="flex-1 pr-4">
+                     <div class="relative md:w-1/3">
+                        <div class="absolute top-0 left-0 inline-flex items-center p-2">
+                        </div>
+                     </div>
+                  </div>
+               <div>
+            </div>
+         </div>
+
+               <form action="<%=host%>/fluxo/<%=token%>" method="post" class="p-10 bg-white rounded shadow-xl">
+                  <p class="text-lg text-gray-800 font-medium pb-4">Parâmetros de Pesquisa</p>
+                  <div class="mt-2">
+                     <label class=" block text-md text-gray-600" for="flx_emp">Empreendimentos</label>
+                     <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="flx_emp" name="flx_emp" type="select" required="" placeholder="Empreendimento" aria-label="Empreendimento">
+                     <option>Todos</option>
+                      <%
+                        var options = empreendimentos;                 
+                        for (var i = 0; i < options.length; i++)
+                        {
+                         %>
+                          <option value="<%=options[i].id %>">
+                            <%=options[ i ].descricao %>
+                          </option>
+                        <%
+                        }                
+                      %>
+                          
+                     </select>  
+                  </div>
+       
+                   <div class="mt-2">
+                      <label class=" block text-md text-gray-600" for="flx_con">Contas</label>
+                      <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="flx_con" name="flx_con" type="select" required="" placeholder="Conta" aria-label="Conta">
+                      <option>Todas</option>
+                        <%
+                         var options = contas;                 
+                         for (var i = 0; i < options.length; i++)
+                         {
+                         %>
+                           <option value="<%=options[i].id %>">
+                             <%=options[ i ].descricao %>
+                           </option>
+                         <%
+                         }                
+                       %> 
+                      </select>  
+                   </div> 
+                  <div class="inline-block mt-2 w-1/2 pr-1">
+                     <label class="block text-md text-gray-600" for="dt_ini">Data Início</label>
+                     <input type="date"class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="dt_ini" name="dt_ini" type="text" required="" placeholder="Data Inicial" aria-label="Data inícial">
+                  </div>
+                  <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                     <label class="block text-md text-gray-600" for="dt_fim">Data Fim</label>
+                     <input type="date" class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="dt_fim" name="dt_fim" type="text" required="" placeholder="Data Final" aria-label="Data Final">
+                  </div>          
+                  <div class="mt-4 flex justify-between">
+                    <a href="""> 
+                      <div class="px-4 bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-600">Limpar</div>
+                    </a>
+                    <input type="submit" value="Gerar Relatório" class="px-4 bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-600">
+                  </div>
+               </form>
+               <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+
+                  <table id="tbl" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                     <thead>
+                        <tr class="text-center">
+                           <template x-for="heading in headings">
+                              <th class="bg-gray-100 sticky top-0 border-b border-gray-200 px-6 py-2 text-gray-600 font-bold tracking-wider uppercase text-xs"
+                                 x-text="heading.value" :x-ref="heading.key" :class="{ [heading.key]: true }" ></th>
+                           </template>
+                        </tr>
+                     </thead>
+                     <tbody>                       
+                        <template x-for="movimento in movimentos" :key="movimento.id">
+                           <tr>  
+                              <td class="border-dashed border-t border-gray-200  text-center Data">
+                                 <span class="text-gray-700 px-1 py-0" 
+                                 x-text="movimento.data"></span>
+                              </td>
+                              <td class="border-dashed border-t border-gray-200 text-right Valor">
+                                 <span class="text-gray-700 px-1 py-0" 
+                                 x-text="movimento.valor"></span>
+                               </td>
+                               <td class="border-dashed border-t border-gray-200 text-center Tipo">
+                                 <span class="text-gray-700 px-1 py-0" 
+                                 x-text="movimento.tipo"></span>
+                               </td> 
+                              <td class="border-dashed border-t border-gray-200 Descricao">
+                                 <span class="text-gray-700 px-1 py-0 flex items-center" 
+                                 x-text="movimento.descricao"></span>
+                              </td>                                                              
+                              <td class="border-dashed border-t border-gray-200 Empreendimento">
+                                <span class="text-gray-700 px-1 py-0 flex items-center" 
+                                x-text="movimento.empreendimento"></span>
+                              </td> 
+                             <td class="border-dashed border-t border-gray-200 Conta">
+                               <span class="text-gray-700 px-1 py-0 flex items-center" 
+                               x-text="movimento.conta"></span>
+                             </td>
+                           </tr>                           
+                        </template> 
+                           <tr>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0">Total Entrada: </span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"><%=totalcrd%></span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"></span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"></span>
+                           </td>                      
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0">Empreendimento: </span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"><%=flx_emp%></span>
+                           </td>                      
+                        </tr>
+                        <tr>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-red-700 px-1 py-0">Total Saída: </span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-red-700 px-1 py-0"><%=totaldeb%></span>
+                           </td> 
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"></span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"></span>
+                           </td>                      
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0">Conta: </span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"><%=flx_con%></span>
+                           </td>            
+                        </tr>
+                        <tr>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-gray-700 px-1 py-0 <% if (tipo == 'Negativo') { %> text-red-700 <% } %> <% if (tipo == 'Positivo') { %> text-blue-700 <% } %>">Saldo Caixa: </span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-gray-700 px-1 py-0 <% if (tipo == 'Negativo') { %> text-red-700 <% } %> <% if (tipo == 'Positivo') { %> text-blue-700 <% } %>"><%=saldo%></span>
+                           </td> 
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"></span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"></span>
+                           </td>                      
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0">Período:</span>
+                           </td>
+                           <td class="border-dashed border-t border-gray-200 text-right">
+                              <span class="text-blue-700 px-1 py-0"><%=dt_ini%> até <%=dt_fim%></span>
+                           </td>                      
+                        </tr> 
+                     </tbody>                   
+                  </table>                   
+               </div>                               
+            </div> 
+            <div class="mb-4 flex justify-between items-center">
+               <div class="flex-1 pr-4">
+                  <div class="relative md:w-1/3">
+                     <div class="absolute top-0 left-0 inline-flex items-center p-2">
+                     </div>
+                  </div>
+               </div>
+            </div>                    
+         </div>
+      </div>
+      
+      <!-- AlpineJS -->
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+      <!-- Font Awesome -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+      <!-- jQuery -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <!--Datatables -->
+      <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+      <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+      
+      <script>
+         function datatables() {
+             return {
+                 headings: [  
+                     {
+                        'key': 'data',
+                        'value': 'Data'
+                     },
+                     {
+                         'key': 'valor',
+                         'value': 'Valor'
+                     },
+                     {
+                        'key': 'tipo',
+                        'value': 'Tipo'
+                     }, 
+                     {                         
+                        'key': 'descricao',
+                        'value': 'Movimento'
+                     },                                                              
+                     {
+                        'key': 'empreendimento',
+                        'value': 'Empreendimento'
+                     },
+                     {
+                        'key': 'conta',
+                        'value': 'Conta'
+                     }
+                 ],
+                 
+                 movimentos: <%- JSON.stringify(movimentos) %>, 
+                 selectedRows: [],         
+                 open: false,  
+             }
+         }
+      </script>
+
+      <script>      
+        $(document).ready(function() {			
+        var table = $('#tbl').DataTable( {
+            buttons: [{
+                     extend: 'excelHtml5',
+                     text: 'Salvar Excel &nbsp;&nbsp;&nbsp;',
+                     orientation: 'portrait',
+                     pageSize: 'A4'
+                  },
+                  {
+                     extend: 'pdfHtml5',
+                     text: '&nbsp;&nbsp;&nbsp; &nbsp; Salvar PDF',
+                     orientation: 'landscape',
+                     pageSize: 'A4'                           
+                  }
+                  ],
+                 "language": {
+                    "oPaginate": {
+                             "sNext": "Próximo",
+                             "sPrevious": "Anterior",
+                             "sFirst": "Primeiro",
+                             "sLast": "Último"
+                             }
+                 },                 
+                 dom: 'Bfrtip',
+                 responsive: true,
+                 searching: false,
+                 info: false,
+                 "ordering": false,                 
+                 "paging":   false
+              });
+              
+              $('#mySearch').keyup( function() {
+                 table.search($('#mySearch').val()).draw();
+              } );
+              
+              $('#mySearchTwo').keyup( function() {
+                 table.search($('#mySearchTwo').val()).draw();
+              } )
+              .columns.adjust()
+              .responsive.recalc()  
+              
+              var data = new Date();
+               // Guarda cada pedaço em uma variável
+               var dia     = data.getDate();           // 1-31
+               var dia_sem = data.getDay();            // 0-6 (zero=domingo)
+               var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+               var ano2    = data.getYear();           // 2 dígitos
+               var ano4    = data.getFullYear();       // 4 dígitos
+               var hora    = data.getHours();          // 0-23
+               var min     = data.getMinutes();        // 0-59
+               var seg     = data.getSeconds();        // 0-59
+               // Formata a data e a hora (note o mês + 1)
+               var str_data = ano4 + '-' + dia  + '-' +  (mes+1);
+               alert(str_data);
+
+        } );                 
+     </script>
+
+     <script>
+      $('#dt_fim').load(function(){
+         // Obtém a data/hora atual
+         var data = new Date();
+         // Guarda cada pedaço em uma variável
+         var dia     = data.getDate();           // 1-31
+         var dia_sem = data.getDay();            // 0-6 (zero=domingo)
+         var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+         var ano2    = data.getYear();           // 2 dígitos
+         var ano4    = data.getFullYear();       // 4 dígitos
+         var hora    = data.getHours();          // 0-23
+         var min     = data.getMinutes();        // 0-59
+         var seg     = data.getSeconds();        // 0-59
+         // Formata a data e a hora (note o mês + 1)
+         var str_data = ano4 + '-' + dia  + '-' +  (mes+1);
+         var str_hora = hora + ':' + min + ':' + seg;
+         $(this).val(str_data);      }      
+      </script>
+   </body>
+</html>

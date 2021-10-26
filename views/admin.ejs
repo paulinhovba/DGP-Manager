@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>DGP Empreendimentos</title>
+      <meta name="author" content="Paulinho Monteiro">
+      <meta name="description" content="">
+      <!-- Tailwind -->
+      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+      <link href="../../../css/style.css" rel="stylesheet">
+      
+  
+   </head>
+   <body class="bg-gray-100 flex">
+      
+      <!-- Inclusão de template EJS - Menu -->
+      <%- include('menu.ejs') %>
+      
+
+      <div class="md:max-w-full md:mx-auto px-2 py-0">
+
+            <div class="lg:grid lg:h-30 lg:grid-flow-row md:gap-1 lg:grid-cols-3">
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-red-800"><%=totaldeb%></p>
+                     <p class="text-lg text-center text-red-500">Saídas</p>
+                  </div>
+               </div>
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-blue-800"><%=totalcrd%></p>
+                     <p class="text-lg text-center text-blue-500">Entradas</p>
+                  </div>
+               </div>
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-gray-800 <% if (tipo == 'Negativo') { %> text-red-800 <% } %> <% if (tipo == 'Positivo') { %> text-blue-800 <% } %>"><%=saldo%></p>
+                     <p class="text-lg text-center text-gray-500 <% if (tipo == 'Negativo') { %> text-red-500 <% } %> <% if (tipo == 'Positivo') { %> text-blue-500 <% } %>">Saldo <%=tipo%></p>
+                  </div>
+               </div>              
+            </div>
+
+            <div class="lg:grid lg:h-30 lg:grid-flow-row md:gap-1 lg:grid-cols-2">
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-blue-800"><%=totalempvd%></p>
+                     <p class="text-lg text-center text-blue-500">Empreendimentos Finalizados</p>
+                  </div>
+               </div>
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-green-800"><%=totalemp%></p>
+                     <p class="text-lg text-center text-green-500">Empreendimentos em Andamento</p>
+                  </div>
+               </div>               
+            </div>
+
+
+            <div class="lg:grid lg:h-30 lg:grid-flow-row md:gap-1 lg:grid-cols-2">
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-blue-800"><%=totallot%></p>
+                     <p class="text-lg text-center text-blue-500">Lotes Vendidos</p>
+                  </div>
+               </div>
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-green-800"><%=totallotvd%></p>
+                     <p class="text-lg text-center text-green-500">Lotes Disponíveis</p>
+                  </div>
+               </div>
+            </div>
+
+
+            <div class="lg:grid lg:h-30 lg:grid-flow-row md:gap-1 lg:grid-cols-2">
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-blue-800"><%=totalcot%></p>
+                     <p class="text-lg text-center text-blue-500">Cotas Vendidas</p>
+                  </div>
+               </div>
+               <div id="jh-stats-neutral" class="flex flex-col justify-center px-2 py-3 mt-4 bg-white border border-gray-300 rounded md:mb-0">
+                  <div>
+                     <p class="text-3xl font-semibold text-center text-green-800"><%=totalcotvd%></p>
+                     <p class="text-lg text-center text-green-500">Cotas Disponíveis</p>
+                  </div>
+               </div>
+            </div>    
+         <br/> 
+         <!--Novos elementos a partir daqui! -->
+         </div>
+      </div>
+
+
+      
+      <!-- AlpineJS -->
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+      <!-- Font Awesome -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+   </body>
+</html>

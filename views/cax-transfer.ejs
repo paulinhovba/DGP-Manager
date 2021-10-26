@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>DGP Empreendimentos - Saldo por Conta - Gráfico</title>
+      <meta name="author" content="Paulinho Monteiro">
+      <meta name="description" content="">
+      <!-- Tailwind -->
+      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+      <link href="../../../css/style.css" rel="stylesheet">   
+   </head>
+
+   <body onLoad="formataValores();" class="bg-gray-100 flex">
+      
+      <!-- Inclusão de template EJS - Menu -->
+      <%- include('menu.ejs') %>
+
+      <!-- INÍCIO - Inclusão do Alert -->
+      <% if (destino !== null) { %>
+         <div class="md:max-w-6xl md:mx-auto px-4 mt-4">
+            <div class="bg-indigo-200 text-indigo-700 px-6 py-4 rounded-lg relative" role="alert" x-data="{ open: true }" x-show.transition="open">
+               <div class="mr-4">
+                  <strong class="font-bold">Operação concluída: </strong>
+                  <span class="block sm:inline">Transferência: R$ <%=valor%> transferido para <%=destino%> com sucesso!.</span>
+               </div>
+
+               <span class="cursor-pointer absolute top-0 bottom-0 right-0 hover:bg-indigo-100 hover:text-indigo-600 w-10 h-10 rounded-full inline-flex items-center justify-center mt-2 mr-3" x-on:click="open = false">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                     <rect x="0" y="0" width="24" height="24" stroke="none"></rect>
+                     <line x1="18" y1="6" x2="6" y2="18" />
+                     <line x1="6" y1="6" x2="18" y2="18" />
+                     </svg>
+               </span>
+         </div>
+      </div>
+      <% } %>
+         <!-- FIM - Inclusão do Alert -->
+      
+        <div class="md:max-w-full md:mx-auto px-1 py-0"> 
+          <div class="container mx-auto py-1 px-1">
+             <div class="mb-1 flex justify-between items-center">
+                
+             <div>
+          </div>
+       </div>
+
+       <form action="<%=host%>/caixa/transfer/<%=token%>" method="post" class="p-2 bg-white rounded shadow-xl">
+        <div class="flex justify-between">
+           
+           <div class="inline-block mt-2 w-1/5 pr-1">
+              <label class=" block text-md text-gray-600" for="cax_org">Caixa Origem</label>
+              <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cax_org" name="cax_org" type="select" required="" placeholder="Conta" aria-label="Conta">
+               <option>Selecione...</option>
+                 <%
+                    var options = caixas;                 
+                    for (var i = 0; i < options.length; i++)
+                    {
+                    %>
+                 <option value="<%=options[i].id %>">
+                    <%=options[ i ].descricao %>
+                 </option>
+                 <%
+                    }                
+                    %>   
+              </select>
+           </div>
+           <div class="inline-block mt-2 pl-1 w-1/5 pr-1">
+              <label class=" block text-md text-gray-600" for="cax_des">Caixa Destino</label>
+              <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cax_des" name="cax_des" type="select" required="" placeholder="Conta" aria-label="Conta">
+                 <option>Selecione...</option>
+                 <%
+                    var options = caixas;                 
+                    for (var i = 0; i < options.length; i++)
+                    {
+                    %>
+                 <option value="<%=options[i].id %>">
+                    <%=options[ i ].descricao %>
+                 </option>
+                 <%
+                    }                
+                    %>   
+              </select>
+           </div>
+
+           <div class="inline-block mt-2 -mx-1 pl-1 w-1/5 pr-1">
+               <label class=" block text-md text-gray-600" for="trf_emp">Empreendimento</label>
+               <select class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="trf_emp" name="trf_emp" type="select" required="" placeholder="Empreendimento" aria-label="Empreendimento">
+                  <option>Selecione...</option>
+                <%
+                  var options = empreendimentos;                 
+                  for (var i = 0; i < options.length; i++)
+                  {
+                   // var selected = (empreendimento == options[i].descricao) ? "selected" : "";
+                    %>
+                    <option value="<%=options[i].id %>">
+                      <%=options[ i ].descricao %>
+                    </option>
+                  <%
+                  }                
+                %>
+                    
+               </select>  
+            </div>
+
+           <div class="inline-block mt-2 w-1/5 px-1 pl-1 pr-1">
+                <label class="block text-md text-gray-600" for="dt_trf">Data Transferência</label> 
+                <input type="date"class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="dt_trf" name="dt_trf" type="text" required="" placeholder="Data Inicial" aria-label="Data inícial">
+             </div>
+
+           <div class="inline-block mt-2 pl-1 w-1/5">
+               <label class="block text-md text-gray-600" for="cax_val">Valor</label>
+               <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cax_val" name="cax_val" type="text" required="" placeholder="Descricao" aria-label="Descricao">
+            </div> 
+        </div>
+           
+        <div class="mt-3 mb-3 px-2 flex justify-between">
+           <a href="">
+              <div class="bg-gray-200 hover:bg-gray-300 border border-gray-100 text-black font-bold py-2 px-6 rounded-md">Cancelar</div>
+           </a>
+           <input type="submit" value="Transferir" class="bg-gray-200 hover:bg-gray-300 border border-gray-100 text-black font-bold py-2 px-6 rounded-md">
+        </div>
+  </div>
+  </form>
+
+   
+        <div class="lg:grid lg:h-30 lg:grid-flow-row md:gap-1 lg:grid-cols-3 mt-3 px-1" x-data="{myForData: sourceData}">
+          <template x-for="item in myForData" :key="item">
+            <div id="jh-stats-neutral" class="flex items-center shadow hover:bg-indigo-100 
+            hover:shadow-lg hover:rounded transition duration-150 ease-in-out transform 
+            hover:scale-102 flex flex-col justify-center px-2 py-3 mt-0 bg-white border
+            border-gray-300 rounded md:mb-0"                     
+              <div class="text-md">
+                <p
+                  class="card text-md font-semibold text-center"
+                  x-bind:class="{ 'text-blue-600': item.total.substring(0,4) !== 'R$ -' , 'text-red-600': item.total.substring(0,4) === 'R$ -' }"
+                  x-text="item.caixa"
+                ></p>
+                <p
+                  class="value text-lg text-center text-gray-700"
+                  x-text="item.total"
+                ></p>
+              </div>
+            </div>
+           </template>
+        </div>
+
+        <div class="lg:grid lg:h-30 lg:grid-flow-row md:gap-1 lg:grid-cols-3 mt-3 px-1">
+            <div id="jh-stats-neutral" class="flex items-center shadow hover:bg-indigo-100 
+            hover:shadow-lg hover:rounded transition duration-150 ease-in-out transform 
+            hover:scale-102 flex flex-col justify-center px-2 py-3 mt-0 bg-white border
+            border-gray-300 rounded md:mb-0">                     
+              <div class="text-lg">
+                <p class="text-lg font-semibold text-center text-blue-600">Receitas:</p>
+                <p class="text-lg text-center text-blue-700"><%=totalcrd%></p>
+              </div>
+            </div>
+            <div id="jh-stats-neutral" class="flex items-center shadow hover:bg-indigo-100 
+            hover:shadow-lg hover:rounded transition duration-150 ease-in-out transform 
+            hover:scale-102 flex flex-col justify-center px-2 py-3 mt-0 bg-white border
+            border-gray-300 rounded md:mb-0">
+              <div class="text-lg">
+                <p class="text-lg font-semibold text-center text-red-600">Despesas:</p>
+                <p class="text-lg text-center text-red-700"><%=totaldeb%></p>
+              </div>
+            </div>
+            <div id="jh-stats-neutral" class="flex items-center shadow hover:bg-indigo-100 
+            hover:shadow-lg hover:rounded transition duration-150 ease-in-out transform 
+            hover:scale-102 flex flex-col justify-center px-2 py-3 mt-0 bg-white border
+            border-gray-300 rounded md:mb-0">
+              <div class="text-lg">
+                <p class="text-lg font-semibold text-center text-gray-600<% if (tipo == 'Negativo') { %> text-red-700 <% } %> <% if (tipo == 'Positivo') { %> text-blue-700 <% } %>">Saldo:</p>
+                <p class="text-lg text-center text-gray-700<% if (tipo == 'Negativo') { %> text-red-700 <% } %> <% if (tipo == 'Positivo') { %> text-blue-700 <% } %>"><%=saldo%></p>
+              </div>
+            </div>
+        </div>
+
+       <div class="md:max-w-full md:mx-auto px-1 py-0"> 
+          <div class="container mx-auto py-0 px-1">
+             <div class="mb-1 flex justify-between items-center">                
+             <div>
+          </div>
+       </div>
+
+      </div>
+      
+      <!-- AlpineJS -->
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+      <!-- Font Awesome -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+      <!-- JQuery -->
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+   
+      <script> 
+
+         $('#cax_val').keyup(function(){
+         var v = $(this).val();
+         v=v.replace(/\D/g,'');
+         v=v.replace(/(\d{1,2})$/, ',$1');  
+         v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+         v = v != ''?'R$ '+v:'';
+         $(this).val(v);
+         });
+
+
+         $('#cax_val').focus(function(){
+         var v = $(this).val();
+         v=v.replace(/\D/g,'');
+         v=v.replace(/(\d{1,2})$/, ',$1');  
+         v=v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');  
+         v = v != ''?'R$ '+v:'';
+         $(this).val(v);
+         });
+
+      </script>  
+
+      <script>
+         var sourceData = <%- JSON.stringify(dados) %>;
+      </script>
+    
+    
+    
+      </body>
+</html>

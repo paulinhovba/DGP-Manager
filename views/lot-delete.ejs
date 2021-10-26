@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>DGP Empreendimentos</title>
+      <meta name="author" content="David Grzyb">
+      <meta name="description" content="">
+      <!-- Tailwind -->
+      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+      <link href="../../../css/style.css" rel="stylesheet">
+   </head>
+   <body class="bg-gray-100 flex">
+      
+      <!-- Inclusão de template EJS - Menu -->
+      <%- include('menu.ejs') %>
+
+      <!-- @end Menu Above Medium Screen -->
+      <div class="flex-1 flex-col relative z-0 overflow-y-auto">        
+
+         <div class="md:max-w-full md:mx-auto px-2 py-0">
+            <div class="container mx-auto py-1 px-1">
+            </div>            
+          </div> 
+          
+          <div class="md:max-w-full md:mx-auto px-2 py-0">
+            <form action="<%=host%>/lote/delete/<%=token%>/<%=id%>" method="post" class="p-10 bg-white rounded shadow-xl">
+              <p class="text-lg text-red-800 font-medium pb-4">Exclusão de Lotes</p>
+              <div class="inline-block mt-2 w-1/2 pr-1">
+               <label class="block text-md text-gray-600" for="lot_desc">Descrição</label>
+               <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_desc" name="lot_desc" type="text" required="" placeholder="Descrição" aria-label="Descricao" Disabled Value ="<%=descricao%>">
+             </div>  
+             <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+               <label class="block text-md text-gray-600" for="lot_desc">Empreendimento</label>
+               <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_emp" name="lot_emp" type="text" required="" placeholder="Empreendimento" aria-label="Empreendimento" Disabled Value ="<%=empreendimento%>">
+             </div>   
+              <div class="inline-block mt-2 w-1/2 pr-1">
+                 <label class="block text-md text-gray-600" for="lot_quad">Quadra</label>
+                 <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_quad" name="lot_quad" type="text" required="" placeholder="Quadra" aria-label="Quadra" Disabled Value ="<%=quadra%>">
+              </div>
+              <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                 <label class=" block text-md text-gray-600" for="lot_num">Número</label>
+                 <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_num" name="lot_num" type="select" required="" placeholder="Número do Lote" aria-label="Número do Lote" Disabled Value ="<%=numero%>">
+              </div>
+              <div class="inline-block mt-2 w-1/2 pr-1">
+                 <label class="block text-md text-gray-600" for="lot_metr">Metragem</label>
+                 <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_metr" name="lot_metr" type="select" required="" placeholder="Metragem" aria-label="Metragem" Disabled Value ="<%=metragem%>">
+              </div>
+              <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                 <label class="block text-md text-gray-600" for="lot_matr">Matrícula</label>
+                 <input class="w-full px-2  py-2 text-gray-700 bg-gray-200 rounded" id="lot_matr" name="lot_matr" type="text" required="" placeholder="Matrícula" aria-label="Matricula" Disabled Value ="<%=matricula%>">
+              </div>
+
+           <div class="inline-block mt-2 w-1/2 pr-1">
+             <label class="block text-md text-gray-600" for="lot_vlm2">Valor M2</label>
+             <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_vlm2" name="lot_vlm2" type="text" required="" placeholder="Valor M2" aria-label="Valor M2" Disabled Value ="<%=valorM2%>">
+          </div>
+
+          <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+           <label class="block text-md text-gray-600" for="lot_vltot">Valor Total</label>
+           <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="lot_vltot" name="lot_vltot" type="text" required="" placeholder="Valor Total" aria-label="Valor Total" Disabled Value ="<%=valorTotal%>">
+           </div>
+
+              <div class="mt-4 flex justify-between">
+                <a href="<%=host%>/lotes/<%= token %>"> 
+                  <div class="px-4 bg-red-400 p-3 rounded-lg text-white hover:bg-red-600">Cancelar</div>
+                </a>
+                <input type="submit" value="Excluir" class="px-4 bg-red-400 p-3 rounded-lg text-white hover:bg-red-600">
+              </div>
+          </form>
+        </div>
+      </div>
+            
+      <!-- AlpineJS -->
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+      <!-- Font Awesome -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+
+   </body>
+</html>

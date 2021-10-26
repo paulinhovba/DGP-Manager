@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html id="page" lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>DGP Empreendimentos - Gestão Eficiente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<style>
+           
+@import url('https://fonts.googleapis.com/css?family=Mukta');
+body{
+  font-family: 'Mukta', sans-serif;
+	height:100vh;
+	min-height:550px;
+  background: url(./img/analytics.jpg) no-repeat center center fixed;
+	background-repeat: no-repeat; 
+	background-size:cover;
+	background-position:center;
+	position:relative;
+    overflow-y: hidden;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+a{
+  text-decoration:none;
+  color:#444444;
+}
+#tbl {   
+  background-color: rgb(170, 170, 170); 
+  } 
+.login-reg-panel{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+	text-align:center;
+    width:70%;
+	right:0;left:0;
+    margin:auto;
+    height:400px;
+    background-color: rgba(31, 3, 133, 0.658);
+}
+.white-panel{
+    background-color: rgba(255,255, 255, 1);
+    height:500px;
+    position:absolute;
+    top:-50px;
+    width:50%;
+    right:calc(50% - 50px);
+    transition:.3s ease-in-out;
+    z-index:0;
+    box-shadow: 0 0 15px 9px #00000096;
+}
+
+.login-reg-panel{
+    color:#B8B8B8;
+}
+
+.login-reg-panel #label-login, 
+.login-reg-panel #label-register{
+    border:1px solid #9E9E9E;
+    padding:5px 5px;
+    width:150px;
+    display:block;
+    text-align:center;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight: 600;
+    font-size: 18px;
+}
+.login-info-box{
+    width:45%;
+    padding:0 50px;
+    top:20%;
+    left:0;
+    position:absolute;
+    text-align:left;
+}
+.register-info-box{
+    width:30%;
+    padding:0 50px;
+    top:20%;
+    right:0;
+    position:absolute;
+    text-align:left;
+    
+}
+.right-log{right:50px !important;}
+
+.login-show, 
+.register-show{
+    z-index: 1;
+    display:none;
+    opacity:0;
+    transition:0.5s ease-in-out;
+    color:#242424;
+    text-align:left;
+    padding:50px;
+}
+.show-log-panel{
+    display:block;
+    opacity:0.9;
+}
+.login-show input[type="text"], .login-show input[type="password"]{
+    width: 100%;
+    display: block;
+    margin:20px 0;
+    padding: 15px;
+    border: 1px solid #b5b5b5;
+    outline: none;
+}
+.login-show input[type="button"] {
+    max-width: 150px;
+    width: 100%;
+    background: #444444;
+    color: #f9f9f9;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    float:right;
+    cursor:pointer;
+}
+.login-show a{
+    display:inline-block;
+    padding:10px 0;
+}
+
+.register-show input[type="text"], .register-show input[type="password"]{
+    width: 100%;
+    display: block;
+    margin:20px 0;
+    padding: 15px;
+    border: 1px solid #b5b5b5;
+    outline: none;
+}
+.register-show input[type="button"] {
+    max-width: 150px;
+    width: 100%;
+    background: #444444;
+    color: #f9f9f9;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    float:right;
+    cursor:pointer;
+}
+.credit {
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    color: #3B3B25;
+    margin: 0;
+    padding: 0;
+    font-family: Arial,sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    z-index: 99;
+}
+a{
+  text-decoration:none;
+  color:#2c7715;
+}
+    
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 768px){
+  #form {
+    width: 100%;
+    
+  }
+
+  .white-panel {
+    position:absolute;
+    width:90%;
+    right:0px;
+  }
+  
+}
+
+</style>
+<body>
+
+<div class="login-reg-panel" id="form">            
+  <div class="login-info-box">				
+  </div>
+          
+  <div class="register-info-box">			
+  </div>
+          
+<div class="white-panel">
+  <div class="login-show"> 
+    <img class="w-4/6 hover:opacity-75" :src="image" src="img/logo.png">	
+    ­<br />			
+    <input id="user" type="text" placeholder="Email">
+    <input id="pass" type="password" placeholder="Senha">
+    <input id="btn" type="button" value="Entrar">
+    <a href="">Esqueceu a senha?</a>  
+  </div>
+  <div class="register-show">
+    <img class="w-4/6 hover:opacity-75" :src="image" src="img/logo.png">	
+    ­<br />			
+    <div id="register">Usuário logado. Seja bem-vindo!</div>
+    <input id="blog" type="button" value="Login">
+  </div>
+</div>
+</div>
+
+<div id="main" class=""></div>
+
+   <script src="./js/main.js"></script>
+
+   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+    $('.login-info-box').fadeOut();
+    $('.login-show').addClass('show-log-panel');
+});
+
+$('.login-reg-panel input[type="button"]').on('click', function() {
+        $('.register-info-box').fadeOut(); 
+        $('.login-info-box').fadeIn();        
+        $('.white-panel').addClass('right-log');
+        $('.register-show').addClass('show-log-panel');
+        $('.login-show').removeClass('show-log-panel');   
+});
+
+$('#blog').on('click', function() {
+      ($('#log-reg-show').is(':checked'))
+        $('.register-info-box').fadeIn();
+        $('.login-info-box').fadeOut();        
+        $('.white-panel').removeClass('right-log');        
+        $('.login-show').addClass('show-log-panel');
+        $('.register-show').removeClass('show-log-panel');
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<div x-data="{ sidemenu: false }" class="w-full flex-grow lg:flex lg:items-top lg:w-auto lg:block pt-6 lg:pt-0 overflow-hidden" x-cloak @keydown.window.escape="sidemenu = false">
+  <div class="md:hidden">
+     <div @click="sidemenu = false" class="fixed inset-0 z-30 bg-gray-600 opacity-0 pointer-events-none transition-opacity ease-linear duration-300" :class="{'opacity-75 pointer-events-auto': sidemenu, 'opacity-0 pointer-events-none': !sidemenu}"></div>
+     <!-- Small Screen Menu --> 
+     <div class="fixed inset-y-0 left-0 flex flex-col z-40 max-w-xs w-full bg-white transform ease-in-out duration-300 -translate-x-full" :class="{'translate-x-0': sidemenu, '-translate-x-full': !sidemenu}">
+        <!-- @end Brand Logo / Name -->
+        <div class="mt-6 content-center px-2 py-2 flex-1 h-0 overflow-y-auto text-lg">
+         <ul x-data="{selected:null}">
+            <li>
+               <a href="<%=host%>/admin/<%= token %>"
+                  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                  mb-1 px-1 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'adm') { %> bg-gray-200 <% } %>">
+                  <i class="fas fa-fw fa-align-justify fa-1x"></i> &nbsp;
+                  Painel
+               </a>
+            </li>
+            <li> 
+               <a href="<%=host%>/clientes/<%= token %>"
+                  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                  mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'cli') { %> bg-gray-200 <% } %>">
+                  <i class="far fa-fw fa-address-card fa-1x"></i> &nbsp;
+                  Clientes
+               </a>
+            </li>
+            <li>
+               <a href="<%=host%>/empreendimentos/<%= token %>"
+                  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                  mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'emp') { %> bg-gray-200 <% } %>">
+                  <i class="fas fa-fw fa-city fa-1x"></i> &nbsp;
+                  Loteamentos
+               </a>
+            </li>
+            <li>
+             <a href="<%=host%>/cotas/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'cot') { %> bg-gray-200 <% } %>">
+                <i class="fas fa-fw fa-chart-pie fa-1x"></i> &nbsp;
+                Cotas
+             </a>
+             </li>
+            <li>
+               <a href="<%=host%>/lotes/<%= token %>"
+                  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                  mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'lot') { %> bg-gray-200 <% } %>">
+                  <i class="fas fa-fw fa-home fa-1x"></i> &nbsp;
+                  Lotes
+               </a>
+            </li>
+
+            <li @click="selected !== 1 ? selected = 1 : selected = null">
+               <a href="#" class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                  mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'tbl') { %> bg-gray-200 <% } %>">
+                <i class="fas fa-fw fa-hand-holding-usd fa-1x"></i> &nbsp;
+                  Tabelas &nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="hidden-item fas" :class="{'fa-angle-up': selected === 1, 'fa-angle-down': selected === null }"></i>
+                  </a>
+               </li>
+   
+            <li x-show="selected == 1">
+               <a href="<%=host%>/lote/tabela/<%= token %>"
+                  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                  mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'tbl') { %> bg-gray-200 <% } %>">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-barcode fa-1x"></i> &nbsp;
+                  Preços
+               </a>
+            </li>
+            <li x-show="selected == 1">
+               <a href="<%=host%>/lote/reajuste/<%= token %>"
+                  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                  mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'rjt') { %> bg-gray-200 <% } %>">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-tag fa-1x"></i> &nbsp;
+                  Reajuste
+               </a>
+            </li>
+            
+            <li @click="selected !== 0 ? selected = 0 : selected = null">
+              <a href="#" class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'con') { %> bg-gray-200 <% } %>">
+                <i class="fas fa-fw fa-funnel-dollar fa-1x"></i> &nbsp;
+                Contas &nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="hidden-item fas" :class="{'fa-angle-up': selected === 0, 'fa-angle-down': selected === null }"></i>
+                </a>
+             </li>
+ 
+             <li x-show="selected == 0">
+                <a href="<%=host%>/concategorias/<%= token %>"
+                   class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                   mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'ctg') { %> bg-gray-200 <% } %>">
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-layer-group fa-1x"></i> &nbsp;
+                   Categorias                  
+                </a>
+             </li> 
+             <li x-show="selected == 0"> 
+             <a href="<%=host%>/contas/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'con') { %> bg-gray-200 <% } %>">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-file-invoice-dollar fa-1x"></i> &nbsp;
+                Contas
+             </a>
+          </li>   
+          <li x-show="selected == 0"> 
+             <a href="<%=host%>/caixas/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'cax') { %> bg-gray-200 <% } %>">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-cash-register fa-1x"></i> &nbsp;
+                Caixas
+             </a>
+          </li> 
+          <li x-show="selected == 0"> 
+             <a href="<%=host%>/caixa/transfer/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 ]
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'con') { %> bg-gray-200 <% } %>">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-exchange-alt fa-1x"></i> &nbsp;
+                Transferências
+             </a>
+          </li>   
+          
+            <li>
+             <a href="<%=host%>/lancamentos/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'lct') { %> bg-gray-200 <% } %>">
+                <i class="fas fa-fw fa-donate fa-1x"></i> &nbsp;
+                Lançamentos
+             </a>
+          </li>  
+ 
+          <li @click="selected !== 2 ? selected = 2 : selected = null">
+             <a href="#"  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'ctg') { %> bg-gray-200 <% } %>">
+                <i class="fas fa-fw fa-print fa-1x"></i> &nbsp;
+             Relatórios &nbsp;&nbsp;&nbsp;&nbsp;
+             <i class="hidden-item fas" :class="{'fa-angle-up': selected === 2, 'fa-angle-down': selected === null }"></i>
+             </a>
+          </li>
+ 
+          <li x-show="selected == 2">
+             <a href="<%=host%>/fluxo/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'flx') { %> bg-gray-200 <% } %>"">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="far fa-fw fa-money-bill-alt fa-1x"></i> &nbsp;
+                Fluxo
+             </a>
+          </li>
+          <li x-show="selected == 2">
+             <a href="<%=host%>/relone/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'rel-one') { %> bg-gray-200 <% } %>">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-chart-line fa-1x"></i> &nbsp;
+                Gerencial
+             </a>
+          </li>
+          <li x-show="selected == 2">
+             <a href="<%=host%>/reltwo/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'rel-two') { %> bg-gray-200 <% } %>">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-chart-bar fa-1x"></i> &nbsp;
+                Outros
+             </a>
+          </li>           
+         </ul>
+        </div>
+     </div>
+     <!-- @end Small Screen Menu -->
+  </div>
+  <!-- Menu Above Medium Screen -->
+  <div class="bg-white w-50 min-h-screen overflow-y-auto hidden md:block shadow relative z-30">
+     <!-- Brand Logo / Name -->
+     <!-- @end Brand Logo / Name -->
+     <div class="mt-2 px-4 py-2 text-lg">
+      <ul x-data="{selected:null}">
+         <li>
+            <a href="<%=host%>/admin/<%= token %>"
+               class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+               mb-1 px-1 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'adm') { %> bg-gray-200 <% } %>">
+               <i class="fas fa-fw fa-align-justify fa-1x"></i> &nbsp;
+               Painel
+            </a>
+         </li>
+         <li>
+            <a href="<%=host%>/clientes/<%= token %>"
+               class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+               mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'cli') { %> bg-gray-200 <% } %>">
+               <i class="far fa-fw fa-address-card fa-1x"></i> &nbsp;
+               Clientes
+            </a>
+         </li>
+         <li>
+            <a href="<%=host%>/empreendimentos/<%= token %>"
+               class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+               mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'emp') { %> bg-gray-200 <% } %>">
+               <i class="fas fa-fw fa-city fa-1x"></i> &nbsp;
+               Loteamentos
+            </a>
+         </li>
+         <li>
+          <a href="<%=host%>/cotas/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'cot') { %> bg-gray-200 <% } %>">
+             <i class="fas fa-fw fa-chart-pie fa-1x"></i> &nbsp;
+             Cotas
+          </a>
+          </li>
+         <li>
+            <a href="<%=host%>/lotes/<%= token %>"
+               class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+               mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'lot') { %> bg-gray-200 <% } %>">
+               <i class="fas fa-fw fa-home fa-1x"></i> &nbsp;
+               Lotes
+            </a>
+         </li>
+
+         <li @click="selected !== 1 ? selected = 1 : selected = null">
+            <a href="#" class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+               mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'tbl') { %> bg-gray-200 <% } %>">
+             <i class="fas fa-fw fa-hand-holding-usd fa-1x"></i> &nbsp;
+               Tabelas &nbsp;&nbsp;&nbsp;&nbsp;
+               <i class="hidden-item fas" :class="{'fa-angle-up': selected === 1, 'fa-angle-down': selected === null }"></i>
+               </a>
+            </li>
+  
+         <li x-show="selected == 1">
+            <a href="<%=host%>/lote/tabela/<%= token %>"
+               class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+               mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'tbl') { %> bg-gray-200 <% } %>">
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-barcode fa-1x"></i> &nbsp;
+               Preços
+            </a>
+         </li>
+         <li x-show="selected == 1">
+            <a href="<%=host%>/lote/reajuste/<%= token %>"
+               class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+               mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'rjt') { %> bg-gray-200 <% } %>">
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-tag fa-1x"></i> &nbsp;
+               Reajuste
+            </a>
+         </li>
+         
+         <li @click="selected !== 0 ? selected = 0 : selected = null">
+           <a href="#" class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'con') { %> bg-gray-200 <% } %>">
+             <i class="fas fa-fw fa-funnel-dollar fa-1x"></i> &nbsp;
+             Contas &nbsp;&nbsp;&nbsp;&nbsp;
+             <i class="hidden-item fas" :class="{'fa-angle-up': selected === 0, 'fa-angle-down': selected === null }"></i>
+             </a>
+          </li>
+
+          <li x-show="selected == 0">
+             <a href="<%=host%>/concategorias/<%= token %>"
+                class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+                mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'ctg') { %> bg-gray-200 <% } %>">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-layer-group fa-1x"></i> &nbsp;
+                Categorias                  
+             </a>
+          </li> 
+          <li x-show="selected == 0"> 
+          <a href="<%=host%>/contas/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'con') { %> bg-gray-200 <% } %>">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-file-invoice-dollar fa-1x"></i> &nbsp;
+             Contas
+          </a>
+       </li>   
+       <li x-show="selected == 0"> 
+          <a href="<%=host%>/caixas/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'cax') { %> bg-gray-200 <% } %>">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-cash-register fa-1x"></i> &nbsp;
+             Caixas
+          </a>
+       </li> 
+       <li x-show="selected == 0"> 
+          <a href="<%=host%>/caixa/transfer/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 ]
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'con') { %> bg-gray-200 <% } %>">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-exchange-alt fa-1x"></i> &nbsp;
+             Transferências
+          </a>
+       </li>   
+
+       
+         <li>
+          <a href="<%=host%>/lancamentos/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'lct') { %> bg-gray-200 <% } %>">
+             <i class="fas fa-fw fa-donate fa-1x"></i> &nbsp;
+             Lançamentos
+          </a>
+       </li>  
+
+       <li @click="selected !== 2 ? selected = 2 : selected = null">
+          <a href="#"  class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+          mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'ctg') { %> bg-gray-200 <% } %>">
+             <i class="fas fa-fw fa-print fa-1x"></i> &nbsp;
+          Relatórios &nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="hidden-item fas" :class="{'fa-angle-up': selected === 2, 'fa-angle-down': selected === null }"></i>
+          </a>
+       </li>
+
+       <li x-show="selected == 2">
+          <a href="<%=host%>/fluxo/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'flx') { %> bg-gray-200 <% } %>"">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="far fa-fw fa-money-bill-alt fa-1x"></i> &nbsp;
+             Fluxo
+          </a>
+       </li>
+       <li x-show="selected == 2">
+          <a href="<%=host%>/relone/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'rel-one') { %> bg-gray-200 <% } %>">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-chart-line fa-1x"></i> &nbsp;
+             Gerencial
+          </a>
+       </li>
+       <li x-show="selected == 2">
+          <a href="<%=host%>/reltwo/<%= token %>"
+             class="transform hover:translate-x-1 transition-transform ease-in duration-200 
+             mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 <% if (section == 'rel-two') { %> bg-gray-200 <% } %>">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-chart-bar fa-1x"></i> &nbsp;
+             Outros
+          </a>
+       </li>                    
+      </ul>    
+     </div>
+  </div>
+
+   <!-- @end Menu Above Medium Screen -->
+   <!-- INÍCIO DA DIV principal do CONTENT -->
+   <div class="flex-1 flex-col relative z-0 overflow-y-auto">        
+
+      <div class="px-4 md:px-8 py-2 h-24 flex justify-between items-center shadow-sm bg-white">
+         <div class="flex items-center w-2/3">
+            <input id="mySearch" class="bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-white border border-transparent focus:border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal hidden md:block placeholder-gray-700" type="text" placeholder="Buscar...">
+            <div class="p-2 rounded-full hover:bg-gray-200 cursor-pointer md:hidden" @click="sidemenu = !sidemenu">
+               <i class="fas fa-align-justify fa-2x"></i>
+            </div>
+            <div class="text-xl font-bold tracking-tight text-gray-800 md:hidden ml-2">Menu</div>
+         </div>
+         <div class="flex items-center">
+            <div class="cursor-pointer w-48 h-36 flex items-center justify-center">
+               <img class="hover:opacity-75" src="../../../img/logo.png">
+            </div>
+         </div>
+      </div>
