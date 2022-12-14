@@ -15,7 +15,7 @@
     "date-fns": "^2.16.1",
     "dotenv-safe": "^8.2.0",
     "ejs": "^3.1.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-ejs-layouts": "^2.5.0",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
